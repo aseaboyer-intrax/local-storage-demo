@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Queries Test</title>
+<style>
+	body { margin:0;padding:0}
+	div.test {
+		background-color:#900;
+		color:#fff;
+		padding:20px;
+	}
+@media (max-width:500px) {
+	div.test {
+		background-color:#090;
+		font-weight:bold;
+	}
+}
+
+#search-fields {
+	background-color:#798;
+	border-radius:5px;
+	margin:0 auto;
+	padding:10px;
+	position:relative;
+	top:-10px;
+	width:400px;
+}
+#search-fields p {
+	padding:0;
+	margin:0 0 5px 0;
+}
+
+</style>
+<script src="jquery-2.1.1.min.js"></script>
+<script>
+	var obj = {};
+	
+	function changeStorage( name, value ) {
+		obj[ name ] = value;
+		sessionStorage.setItem( "stored-ap-query", JSON.stringify( obj ) );
+		getStorage();
+	}
+	function getStorage( ) {
+		return JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
+	}
+	function setfields( saved ) {
+		jQuery( '#edit-language select' ).val( saved.language );
+		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
+	}
+	
+	jQuery( document ).ready(function() {
+		obj = getStorage();
+		setfields( obj );
+		jQuery( "#edit-language select" ).change(function( e ) {
+			changeStorage( 'language', e.currentTarget.value );
+		});
+		jQuery( "#age-radio input" ).change(function( e ) {
+			changeStorage( 'age', e.currentTarget.value );
+		});
+	});
+</script>
+</head>
+<body>
+
+<div class="test">
+Test Div
+</div>
+<div id="search-fields">
+	<p><label id="edit-language">Language:
+		<select name="language" class="form-select">
+			<option value="All">All Languages</option><option value="Afrikaans">Afrikaans</option><option value="Algerian">Algerian</option><option value="Arabic">Arabic</option><option value="Basic Latin">Basic Latin</option><option value="Basque">Basque</option><option value="Bosnian">Bosnian</option><option value="Bulgarian">Bulgarian</option><option value="Cambodian">Cambodian</option><option value="Catalan">Catalan</option><option value="Chinese (Cantonese)">Chinese (Cantonese)</option><option value="Chinese (Mandarin)">Chinese (Mandarin)</option><option value="Croatian">Croatian</option><option value="Czech">Czech</option><option value="Danish">Danish</option><option value="Dutch">Dutch</option><option value="English">English</option><option value="Euskera">Euskera</option><option value="French">French</option><option value="German">German</option><option value="Greek">Greek</option><option value="Hindi">Hindi</option><option value="Hungarian">Hungarian</option><option value="Italian">Italian</option><option value="Japanese">Japanese</option><option value="Kabylian">Kabylian</option><option value="Korean">Korean</option><option value="Laotian">Laotian</option><option value="Latin">Latin</option><option value="Macedonian ">Macedonian </option><option value="Ndebele">Ndebele</option><option value="Norwegian">Norwegian</option><option value="Polish">Polish</option><option value="Portuguese">Portuguese</option><option value="Russian">Russian</option><option value="Serbian">Serbian</option><option value="Sign Language">Sign Language</option><option value="Slovak">Slovak</option><option value="Sotho">Sotho</option><option value="Spanish">Spanish</option><option value="Swedish">Swedish</option><option value="Thai">Thai</option><option value="Turkish">Turkish</option><option value="Vietnamese">Vietnamese</option><option value="Xhosa">Xhosa</option><option value="Zulu">Zulu</option>
+		</select></label>
+	</p>
+	
+	<p><label id="age-radio">Do you have children under 2 yrs?<br />
+		<input type="radio" id="edit-undertwo-false" name="undertwo" value="false" class="age-radio"> No
+		<input type="radio" id="edit-undertwo-true" name="undertwo" value="true" class="age-radio"> Yes
+	</label></p>
+</div>
+</body>
+</html>
