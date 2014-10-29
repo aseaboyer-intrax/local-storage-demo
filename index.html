@@ -45,7 +45,7 @@
 		return JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
 	}
 	function setfields( saved ) {
-		var und;
+		console.log( saved );
 		if( saved.language != null ) {
 			jQuery( '#edit-language select' ).val( saved.language );
 		}
