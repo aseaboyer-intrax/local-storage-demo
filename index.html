@@ -46,13 +46,11 @@
 	}
 	function setfields( saved ) {
 		var und;
-		if(saved != {} ) {
-			if( saved.language != und ) {
-				jQuery( '#edit-language select' ).val( saved.language );
-			}
+		if( saved.language != null ) {
+			jQuery( '#edit-language select' ).val( saved.language );
 		}
 		var useAge = false;
-		if( saved.age != und ) { useAge = saved.age; }
+		if( saved.age != null ) { useAge = saved.age; }
 		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
 	}
 	
