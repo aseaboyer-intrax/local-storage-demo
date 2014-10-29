@@ -46,8 +46,10 @@
 	}
 	function setfields( saved ) {
 		console.log( saved );
-		if( saved.language != null ) {
-			jQuery( '#edit-language select' ).val( saved.language );
+		if( saved != null ) {
+			if( saved.language != null ) {
+				jQuery( '#edit-language select' ).val( saved.language );
+			}
 		}
 		var useAge = false;
 		if( saved.age != null ) { useAge = saved.age; }
