@@ -71,11 +71,11 @@
 		getStorage();
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
-			obj = changeStorage( 'language', e.currentTarget.value );
+			obj = changeStorage( obj, 'language', e.currentTarget.value );
 			console.log( obj );
 		});
 		jQuery( "#age-radio input" ).change(function( e ) {
-			obj = changeStorage( 'age', e.currentTarget.value );
+			obj = changeStorage( obj, 'age', e.currentTarget.value );
 			console.log( obj );
 		});
 	});
