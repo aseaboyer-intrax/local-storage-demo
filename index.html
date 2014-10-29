@@ -86,10 +86,15 @@
 		});
 		stringed = window.location.href.split( '#!' )[0] + stringed;
 		console.log( "send user to: " + stringed );
+		document.getElementById( "content" ).innerHTML = stringed;
 	}
 	
 	function readPassedVars ( ) {
-		console.log( window.location );
+		listed = window.location.href.split( '#!' );
+		console.log( listed );
+		if( listed.length > 0 ) {
+			console.log( 'part out vars' );
+		}
 	}
 	
 	jQuery( document ).ready(function() {
