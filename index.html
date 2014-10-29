@@ -39,10 +39,10 @@
 		language: false
 	};
 	
-	function changeStorage( name, value ) {
-		obj[ name ] = value;
+	function changeStorage( passed, name, value ) {
+		passed[ name ] = value;
 		sessionStorage.setItem( "stored-ap-query", JSON.stringify( obj ) );
-		getStorage();
+		return getStorage( );
 	}
 	function getStorage( ) {
 		return JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
@@ -61,10 +61,10 @@
 		obj = getStorage();
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
-			changeStorage( 'language', e.currentTarget.value );
+			obj = changeStorage( 'language', e.currentTarget.value );
 		});
 		jQuery( "#age-radio input" ).change(function( e ) {
-			changeStorage( 'age', e.currentTarget.value );
+			obj = changeStorage( 'age', e.currentTarget.value );
 		});
 	});
 </script>
