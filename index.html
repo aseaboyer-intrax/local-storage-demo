@@ -37,11 +37,18 @@
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
 		sessionStorage.setItem( "stored-ap-query", JSON.stringify( obj ) );
-		return getStorage( );
 	}
 	function getStorage( ) {
 		var stored = JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
 		console.log( stored );
+		if( stored != null ) {
+			if( stored.age != null ) {
+				obj.age = storage.age;
+			}
+			if( stored.language != null ) {
+				obj.language = storage.language;
+			}
+		}
 		return stored;
 	}
 	function setfields( saved ) {
@@ -61,14 +68,14 @@
 		};
 		
 		console.log( obj );
-		obj = getStorage();
+		getStorage();
 		console.log( obj );
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
-			obj = changeStorage( 'language', e.currentTarget.value );
+			changeStorage( 'language', e.currentTarget.value );
 		});
 		jQuery( "#age-radio input" ).change(function( e ) {
-			obj = changeStorage( 'age', e.currentTarget.value );
+			changeStorage( 'age', e.currentTarget.value );
 		});
 	});
 </script>
