@@ -45,7 +45,12 @@
 		return JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
 	}
 	function setfields( saved ) {
-		jQuery( '#edit-language select' ).val( saved.language );
+		var und;
+		if( saved.language != und ) {
+			jQuery( '#edit-language select' ).val( saved.language );
+		}
+		var useAge = false;
+		if( saved.age != und ) { useAge = saved.age; }
 		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
 	}
 	
