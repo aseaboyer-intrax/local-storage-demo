@@ -58,12 +58,12 @@
 		}
 		var useAge = false;
 		if( saved.age != null ) { useAge = saved.age; }
-		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
+		jQuery( "input.age-radio[value='" + saved.age + "']" ).prop('checked',true);
 	}
 	
 	jQuery( document ).ready(function() {
 		var obj = {
-			"age": false,
+			"age": 'false',
 			"language": ''
 		};
 		
