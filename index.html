@@ -37,6 +37,9 @@
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
+		if(history) { console.log( 'History Found' ); }
+		if(window.history) { console.log( 'Window History Found' ); }
+	//	window.history.pushState('object', 'New Title', url);
 		return passed;
 	}
 	function getStorage( passed ) {
