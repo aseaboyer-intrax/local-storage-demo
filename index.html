@@ -36,7 +36,8 @@
 <script>
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
-		return sessionStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
+		sessionStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
+		return passed;
 	}
 	function getStorage( ) {
 		var stored = JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
