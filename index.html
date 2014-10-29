@@ -57,14 +57,14 @@
 			jQuery( '#edit-language select' ).val( saved.language );
 		}
 		var useAge = false;
-		if( saved.age != false ) { useAge = saved.age; }
+		if( saved.age != null ) { useAge = saved.age; }
 		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
 	}
 	
 	jQuery( document ).ready(function() {
 		var obj = {
-			"age": '',
-			"language": false
+			"age": false,
+			"language": ''
 		};
 		
 		console.log( obj );
