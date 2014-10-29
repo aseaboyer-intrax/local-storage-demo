@@ -84,7 +84,7 @@
 			if( stringed != '#!' ) { stringed += '&'; }
 			stringed += key + '=' + val;
 		});
-		stringed = window.location.pathname.split( '#!' )[0] + stringed;
+		stringed = window.location.href.split( '#!' )[0] + stringed;
 		console.log( "send user to: " + stringed );
 	}
 	
