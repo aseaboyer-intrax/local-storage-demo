@@ -34,7 +34,10 @@
 </style>
 <script src="jquery-2.1.1.min.js"></script>
 <script>
-	var obj = {};
+	var obj = {
+		age: language,
+		language: false
+	};
 	
 	function changeStorage( name, value ) {
 		obj[ name ] = value;
@@ -46,13 +49,11 @@
 	}
 	function setfields( saved ) {
 		console.log( saved );
-		if( saved != null ) {
-			if( saved.language != null ) {
-				jQuery( '#edit-language select' ).val( saved.language );
-			}
+		if( saved.language != '' ) {
+			jQuery( '#edit-language select' ).val( saved.language );
 		}
 		var useAge = false;
-		if( saved.age != null ) { useAge = saved.age; }
+		if( saved.age != false ) { useAge = saved.age; }
 		jQuery( 'input.age-radio[value=' + saved.age + ']' ).prop('checked',true);
 	}
 	
