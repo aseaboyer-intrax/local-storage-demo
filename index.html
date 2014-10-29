@@ -39,11 +39,21 @@
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
-		if(history) { console.log( 'History Found' ); }
-		if(window.history) { console.log( 'Window History Found' ); }
-	//	window.history.pushState('object', 'New Title', url);
+	/*	try {
+			if( history ) {
+				history.pushState('object', 'New Title', url);
+			} else if( window.history ) { 
+				window.history.pushState('object', 'New Title', url);
+			}
+		}
+		catch(err) {
+			console.log( "Unable to push to the history: " + err.message );
+		}	*/
+		spoofURL( passed );
+		
 		return passed;
 	}
+	
 	function getStorage( passed ) {
 		var stored = JSON.parse( window.localStorage.getItem( "stored-ap-query" ) );
 		console.log( stored );
@@ -57,6 +67,7 @@
 		}
 		return stored;
 	}
+	
 	function setfields( saved ) {
 		console.log( saved );
 		if( saved.language != '' ) {
@@ -65,6 +76,14 @@
 		var useAge = false;
 		if( saved.age != null ) { useAge = saved.age; }
 		jQuery( "input.age-radio[value='" + saved.age + "']" ).prop('checked',true);
+	}
+	
+	function spoofURL ( data ) {
+		var stringed = '#!';
+		$.each( data, function( key, val ) {
+			stringed += key + '=' + val + "&";
+		});
+		console.log( "send user to: " + stringed );
 	}
 	
 	jQuery( document ).ready(function() {
