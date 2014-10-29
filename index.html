@@ -40,7 +40,9 @@
 		return getStorage( );
 	}
 	function getStorage( ) {
-		return JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
+		var stored = JSON.parse( sessionStorage.getItem( "stored-ap-query" ) );
+		console.log( stored );
+		return stored;
 	}
 	function setfields( saved ) {
 		console.log( saved );
