@@ -34,11 +34,6 @@
 </style>
 <script src="jquery-2.1.1.min.js"></script>
 <script>
-	var obj = {
-		"age": '',
-		"language": false
-	};
-	
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
 		sessionStorage.setItem( "stored-ap-query", JSON.stringify( obj ) );
@@ -58,6 +53,11 @@
 	}
 	
 	jQuery( document ).ready(function() {
+		var obj = {
+			"age": '',
+			"language": false
+		};
+		
 		console.log( obj );
 		obj = getStorage();
 		console.log( obj );
