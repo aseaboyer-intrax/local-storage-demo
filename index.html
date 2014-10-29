@@ -81,8 +81,10 @@
 	function spoofURL ( data ) {
 		var stringed = '#!';
 		$.each( data, function( key, val ) {
-			stringed += key + '=' + val + "&";
+			if( stringed != '#!' ) { stringed += '&'; }
+			stringed += key + '=' + val;
 		});
+		stringed = window.location.pathname.split( '#!' )[0] + stringed;
 		console.log( "send user to: " + stringed );
 	}
 	
