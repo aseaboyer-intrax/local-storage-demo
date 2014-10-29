@@ -58,7 +58,9 @@
 	}
 	
 	jQuery( document ).ready(function() {
+		console.log( obj );
 		obj = getStorage();
+		console.log( obj );
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
 			obj = changeStorage( 'language', e.currentTarget.value );
