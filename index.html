@@ -88,6 +88,7 @@
 		});
 		stringed = window.location.href.split( '#!' )[0] + stringed; // @andymakesthings - hash non-url chars next
 		window.history.pushState( data, "Test: " + strungTitle, stringed );
+		document.title = strungTitle;
 		console.log( "send user to: " + strungTitle );
 	}
 	
