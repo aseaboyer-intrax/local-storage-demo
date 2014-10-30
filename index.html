@@ -104,7 +104,7 @@
 		var cleanListed = '';
 		console.log( listed );
 		if( listed.length > 0 ) {
-			cleanListed = decodeURIComponent( listed[ listed.length - 1 ] ).split( ',' );
+			cleanListed = decodeURIComponent( listed[ listed.length - 1 ] ).split( '&' );
 			console.log( 'part out vars: ' );
 			console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
