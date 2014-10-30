@@ -82,6 +82,8 @@
 	}
 	
 	function spoofURL ( data ) {
+		console.log( "spoof" );
+		console.log( data );
 		var buildUrl = '';
 		var strungTitle = "Searching for: ";
 		jQuery.each( data, function( key, val ) {
