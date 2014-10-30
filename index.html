@@ -79,11 +79,12 @@
 	}
 	
 	function spoofURL ( data ) {
-		var strungUrl = '#!';
+		var strungUrl = window.location.href.split( '#!' )[0] + '#!';
+		var buildUrl = '';
 		var strungTitle = "Searching for: ";
 		$.each( data, function( key, val ) {
-			if( strungUrl != '#!' ) { strungUrl += '&';}
-			strungUrl += key + '=' + val;
+			if( buildUrl != '' ) { buildUrl += '&';}
+			buildUrl += key + '=' + val;
 		});
 		if( data.language != '' ) {
 			strungTitle += data.language + ' speaking';
@@ -92,7 +93,7 @@
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
-		strungUrl = window.location.href.split( '#!' )[0] + strungUrl; // @andymakesthings - hash non-url chars next
+		strungUrl += encodeURI(buildUrl); // @andymakesthings - hash non-url chars next
 		window.history.pushState( data, strungTitle, strungUrl );
 		document.title = strungTitle;
 		//console.log( "send user to: " + strungTitle );
