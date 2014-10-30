@@ -87,8 +87,8 @@
 			strungTitle += val;
 		});
 		stringed = window.location.href.split( '#!' )[0] + stringed; // @andymakesthings - hash non-url chars next
-		console.log( "send user to: " + stringed );
 		window.history.pushState( data, "Test: " + strungTitle, stringed );
+		console.log( "send user to: " + strungTitle );
 	}
 	
 	function readPassedVars ( ) {
