@@ -38,6 +38,8 @@
 <script>
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
+		console.log( name + ", " + value );
+		console.log( passed );
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
 	/*	try {
 			if( history ) {
@@ -49,7 +51,6 @@
 		catch(err) {
 			console.log( "Unable to push to the history: " + err.message );
 		}	*/
-		console.log( "5. " + passed );
 		spoofURL( passed );
 		
 		return passed;
