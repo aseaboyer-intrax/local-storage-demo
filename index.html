@@ -79,11 +79,11 @@
 	}
 	
 	function spoofURL ( data ) {
-		var stringed = '#!';
+		var strungUrl = '#!';
 		var strungTitle = "Searching for: ";
 		$.each( data, function( key, val ) {
-			if( stringed != '#!' ) { stringed += '&';}
-			stringed += key + '=' + val;
+			if( strungUrl != '#!' ) { strungUrl += '&';}
+			strungUrl += key + '=' + val;
 		});
 		if( data.language != '' ) {
 			strungTitle += data.language + ' speaking';
@@ -92,8 +92,8 @@
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
-		stringed = window.location.href.split( '#!' )[0] + stringed; // @andymakesthings - hash non-url chars next
-		window.history.pushState( data, strungTitle, stringed );
+		strungUrl = window.location.href.split( '#!' )[0] + strungUrl; // @andymakesthings - hash non-url chars next
+		window.history.pushState( data, strungTitle, strungUrl );
 		document.title = strungTitle;
 		console.log( "send user to: " + strungTitle );
 	}
@@ -102,7 +102,7 @@
 		listed = window.location.href.split( '#!' );
 		console.log( listed );
 		if( listed.length > 0 ) {
-			console.log( 'part out vars' );
+			console.log( 'part out vars: ' + listed[1] );
 		}
 	}
 	
