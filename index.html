@@ -56,7 +56,7 @@
 	
 	function getStorage( passed ) {
 		var stored = JSON.parse( window.localStorage.getItem( "stored-ap-query" ) );
-		console.log( stored );
+		//console.log( stored );
 		if( stored != null ) {
 			if( stored.age != null ) {
 				passed.age = stored.age;
@@ -69,7 +69,7 @@
 	}
 	
 	function setfields( saved ) {
-		console.log( saved );
+		//console.log( saved );
 		if( saved.language != '' ) {
 			jQuery( '#edit-language select' ).val( saved.language );
 		}
@@ -95,7 +95,7 @@
 		strungUrl = window.location.href.split( '#!' )[0] + strungUrl; // @andymakesthings - hash non-url chars next
 		window.history.pushState( data, strungTitle, strungUrl );
 		document.title = strungTitle;
-		console.log( "send user to: " + strungTitle );
+		//console.log( "send user to: " + strungTitle );
 	}
 	
 	function readPassedVars ( ) {
@@ -116,11 +116,11 @@
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
 			obj = changeStorage( obj, 'language', e.currentTarget.value );
-			console.log( obj );
+			//console.log( obj );
 		});
 		jQuery( "#age-radio input" ).change(function( e ) {
 			obj = changeStorage( obj, 'age', e.currentTarget.value );
-			console.log( obj );
+			//console.log( obj );
 		});
 	});
 </script>
