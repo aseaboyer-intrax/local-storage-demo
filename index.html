@@ -86,7 +86,7 @@
 		});
 		stringed = window.location.href.split( '#!' )[0] + stringed;
 		console.log( "send user to: " + stringed );
-		document.getElementById( "content" ).innerHTML = stringed;
+		window.history.pushState( "test", "Local Storage Test - new", stringed );
 	}
 	
 	function readPassedVars ( ) {
