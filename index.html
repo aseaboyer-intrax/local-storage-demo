@@ -82,7 +82,7 @@
 		var strungUrl = window.location.href.split( '#!' )[0] + '#!';
 		var buildUrl = '';
 		var strungTitle = "Searching for: ";
-		$.each( data, function( key, val ) {
+		jQuery.each( data, function( key, val ) {
 			if( buildUrl != '' ) { buildUrl += '&';}
 			buildUrl += key + '=' + val;
 		});
@@ -104,9 +104,12 @@
 		var cleanListed = '';
 		console.log( listed );
 		if( listed.length > 0 ) {
-			cleanListed = listed[ listed.length - 1 ].split( '&' );
+			cleanListed = decodeURIComponent( listed[ listed.length - 1 ].split( '&' ) );
 			console.log( 'part out vars: ' );
-			console.log( cleanListed );
+			//console.log( cleanListed );
+			jQuery.each( cleanListed, function( key, val ) {
+				console.log( key + '=' + val) ;
+			});
 			
 			//changeStorage( stored );
 			//setfields( stored );
