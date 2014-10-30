@@ -39,7 +39,17 @@
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
-		
+	/*	try {
+			if( history ) {
+				history.pushState('object', 'New Title', url);
+			} else if( window.history ) { 
+				window.history.pushState('object', 'New Title', url);
+			}
+		}
+		catch(err) {
+			console.log( "Unable to push to the history: " + err.message );
+		}	*/
+		console.log( "5. " + passed );
 		spoofURL( passed );
 		
 		return passed;
@@ -84,9 +94,8 @@
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
-		strungUrl += encodeURIComponent( buildUrl );
+		strungUrl += encodeURIComponent( buildUrl ); // @andymakesthings - hash non-url chars next
 		window.history.pushState( data, strungTitle, strungUrl );
-		console.log( "1. " + data );
 		document.title = strungTitle;
 		//console.log( "send user to: " + strungTitle );
 	}
