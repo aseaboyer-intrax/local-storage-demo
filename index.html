@@ -85,7 +85,7 @@
 		var buildUrl = '';
 		var strungTitle = "Searching for: ";
 		jQuery.each( data, function( key, val ) {
-			if( parts[0] == 'age' && parts[0] == 'language' ) {
+			if( key == 'age' && key == 'language' ) {
 				if( buildUrl != '' ) { buildUrl += '&';}
 				buildUrl += key + '=' + encodeURIComponent(val);
 			}
