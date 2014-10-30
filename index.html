@@ -93,7 +93,7 @@
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
-		strungUrl += encodeURI(buildUrl); // @andymakesthings - hash non-url chars next
+		strungUrl += encodeURIComponent(buildUrl); // @andymakesthings - hash non-url chars next
 		window.history.pushState( data, strungTitle, strungUrl );
 		document.title = strungTitle;
 		//console.log( "send user to: " + strungTitle );
@@ -104,7 +104,7 @@
 		var cleanListed = '';
 		console.log( listed );
 		if( listed.length > 0 ) {
-			cleanListed = decodeURI( listed );
+			cleanListed = decodeURIComponent( listed[ listed.length] );
 			console.log( 'part out vars: ' + cleanListed );
 		}
 	}
