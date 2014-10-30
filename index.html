@@ -80,13 +80,15 @@
 	
 	function spoofURL ( data ) {
 		var stringed = '#!';
+		var strungTitle = '';
 		$.each( data, function( key, val ) {
-			if( stringed != '#!' ) { stringed += '&'; }
+			if( stringed != '#!' ) { stringed += '&'; strungTitle += ', ' }
 			stringed += key + '=' + val;
+			strungTitle += val;
 		});
-		stringed = window.location.href.split( '#!' )[0] + stringed;
+		stringed = window.location.href.split( '#!' )[0] + stringed; // @andymakesthings - hash non-url chars next
 		console.log( "send user to: " + stringed );
-		window.history.pushState( "test", "Local Storage Test - new", stringed );
+		window.history.pushState( data, "Test: " + strungTitle, stringed );
 	}
 	
 	function readPassedVars ( ) {
