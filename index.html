@@ -104,11 +104,12 @@
 		var cleanListed = '';
 		console.log( listed );
 		if( listed.length > 0 ) {
-			cleanListed = decodeURIComponent( listed[ listed.length] ).split( '&' );
+			cleanListed = decodeURIComponent( listed[ listed.length] );
 			console.log( 'part out vars: ' );
 			console.log( cleanListed );
 			
-			
+			//changeStorage( stored );
+			//setfields( stored );
 		}
 		
 		return stored;	// we are going to fill in the stored object and return it
