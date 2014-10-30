@@ -82,7 +82,7 @@
 	}
 	
 	function spoofURL ( data ) {
-		var strungUrl = window.location.href.split( '#!' )[0] + '#!';
+		var strungUrl = '';//window.location.href.split( '#!' )[0] + '#!';
 		var buildUrl = '';
 		var strungTitle = "Searching for: ";
 		jQuery.each( data, function( key, val ) {
@@ -112,7 +112,9 @@
 			//console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
 				var parts = val.split( '=' );
-				stored[ parts[0] ] = parts[1];
+				if( parts[0] == 'age' && parts[0] == 'language' ) {
+					stored[ parts[0] ] = parts[1];
+				}
 			});
 		}
 		
