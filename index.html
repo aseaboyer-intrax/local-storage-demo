@@ -87,6 +87,7 @@
 		var buildUrl = '';
 		var strungTitle = "Searching for: ";
 		jQuery.each( data, function( key, val ) {
+			console.log( "Trying to spoof in " + key + " -- " + val )
 			if( key == 'age' && key == 'language' ) {
 				if( buildUrl != '' ) { buildUrl += '&';}
 				buildUrl += key + '=' + encodeURIComponent(val);
