@@ -109,8 +109,9 @@
 			console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
 				var parts = val.split( '=' );
-				console.log( parts[0] + '=' + parts[1] ) ;
+				stored[ parts[0] ] = parts[1];
 			});
+			console.log( stored ) ;
 			
 			//changeStorage( stored );
 			//setfields( stored );
