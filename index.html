@@ -88,7 +88,7 @@
 		var strungTitle = "Searching for: ";
 		jQuery.each( data, function( key, val ) {
 			console.log( "Trying to spoof in " + key + " -- " + val )
-			if( key == 'age' && key == 'language' ) {
+			if( (key == 'age' || key == 'language') && val != '' ) {
 				if( buildUrl != '' ) { buildUrl += '&';}
 				buildUrl += key + '=' + encodeURIComponent(val);
 			}
@@ -115,7 +115,7 @@
 			//console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
 				var parts = val.split( '=' );
-				if( parts[0] == 'age' && parts[0] == 'language' ) {
+				if( ( parts[0] == 'age' || parts[0] == 'language' ) && val != '' ) {
 					stored[ parts[0] ] = parts[1];
 				}
 			});
