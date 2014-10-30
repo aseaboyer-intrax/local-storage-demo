@@ -38,8 +38,6 @@
 <script>
 	function changeStorage( passed, name, value ) {
 		passed[ name ] = value;
-		console.log( name + ", " + value );
-		console.log( passed );
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
 	/*	try {
 			if( history ) {
@@ -121,8 +119,14 @@
 	jQuery( document ).ready(function() {
 		var obj = { "age": 'false', "language": '' };
 		getStorage( obj );
+		console.log( "After getStorage" );
+		console.log( obj );
 		obj = readPassedVars( obj );// Need to check the url first!
+		console.log( "After readPassedVars" );
+		console.log( obj );
 		setfields( obj );
+		console.log( "After setfields" );
+		console.log( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
 			obj = changeStorage( obj, 'language', e.currentTarget.value );
 			//console.log( obj );
