@@ -55,8 +55,11 @@
 	}
 	
 	function getStorage( passed ) {
+		console.log( 'passed' );
+		console.log( passed );
 		var stored = JSON.parse( window.localStorage.getItem( "stored-ap-query" ) );
-		//console.log( stored );
+		console.log( 'stored' );
+		console.log( stored );
 		if( stored != null ) {
 			if( stored.age != null ) {
 				passed.age = stored.age;
@@ -119,14 +122,8 @@
 	jQuery( document ).ready(function() {
 		var obj = { "age": 'false', "language": '' };
 		getStorage( obj );
-		console.log( "After getStorage" );
-		console.log( obj );
 		obj = readPassedVars( obj );// Need to check the url first!
-		console.log( "After readPassedVars" );
-		console.log( obj );
 		setfields( obj );
-		console.log( "After setfields" );
-		console.log( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
 			obj = changeStorage( obj, 'language', e.currentTarget.value );
 			//console.log( obj );
