@@ -105,10 +105,10 @@
 	function readPassedVars ( stored ) {
 		var listed = window.location.href.split( '#!' );
 		var cleanListed = '';
-		console.log( listed );
 		if( listed.length > 0 ) {
 			cleanListed = decodeURIComponent( listed[ listed.length - 1 ] ).split( '&' );
-			//console.log( 'part out vars: ' );
+			console.log( 'part out vars: ' );
+			console.log( cleanListed );
 			//console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
 				var parts = val.split( '=' );
@@ -117,7 +117,7 @@
 				}
 			});
 		}
-		
+		console.log( stored)
 		return stored;	// we are going to fill in the stored object and return it
 	}
 	
