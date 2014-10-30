@@ -100,10 +100,12 @@
 	}
 	
 	function readPassedVars ( ) {
-		listed = window.location.href.split( '#!' );
+		var listed = window.location.href.split( '#!' );
+		var cleanListed = '';
 		console.log( listed );
 		if( listed.length > 0 ) {
-			console.log( 'part out vars: ' + listed[1] );
+			cleanListed = decodeURI( listed );
+			console.log( 'part out vars: ' + cleanListed );
 		}
 	}
 	
