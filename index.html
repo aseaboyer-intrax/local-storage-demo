@@ -108,7 +108,8 @@
 			console.log( 'part out vars: ' );
 			console.log( cleanListed.length );
 			jQuery.each( cleanListed, function( key, val ) {
-				console.log( key + '=' + val) ;
+				var parts = val.split( '=' );
+				console.log( parts[0] + '=' + parts[1] ) ;
 			});
 			
 			//changeStorage( stored );
