@@ -97,7 +97,7 @@
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
-		window.history.pushState( data, strungTitle, buildUrl );
+		window.history.pushState( data, strungTitle, '#!' + buildUrl );
 		document.title = strungTitle;
 		//console.log( "send user to: " + strungTitle );
 	}
