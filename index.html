@@ -80,14 +80,19 @@
 	
 	function spoofURL ( data ) {
 		var stringed = '#!';
-		var strungTitle = '';
+		var strungTitle = "Test: ";
 		$.each( data, function( key, val ) {
-			if( stringed != '#!' ) { stringed += '&'; strungTitle += ', ' }
+			if( stringed != '#!' ) { stringed += '&';}
 			stringed += key + '=' + val;
-			strungTitle += val;
 		});
+		if( data.language != '' ) {
+			strungTitle += data.language + ' speaking';
+		}
+		if( data.age ) {
+			strungTitle += ' who can watch children under two';
+		}
 		stringed = window.location.href.split( '#!' )[0] + stringed; // @andymakesthings - hash non-url chars next
-		window.history.pushState( data, "Test: " + strungTitle, stringed );
+		window.history.pushState( data, strungTitle, stringed );
 		document.title = strungTitle;
 		console.log( "send user to: " + strungTitle );
 	}
