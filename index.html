@@ -80,7 +80,7 @@
 	
 	function spoofURL ( data ) {
 		var stringed = '#!';
-		var strungTitle = "Test: ";
+		var strungTitle = "Searching for: ";
 		$.each( data, function( key, val ) {
 			if( stringed != '#!' ) { stringed += '&';}
 			stringed += key + '=' + val;
@@ -88,6 +88,7 @@
 		if( data.language != '' ) {
 			strungTitle += data.language + ' speaking';
 		}
+		strungTitle += data.language + ' au pairs';
 		if( data.age ) {
 			strungTitle += ' who can watch children under two';
 		}
