@@ -47,26 +47,41 @@
 <script src="jquery-2.1.1.min.js"></script>
 <script src="js/tags.js"></script>
 <script>
-	var tagList = new Array();
+	var tagList = new Array(); // global tag array
 	
-	function findTag( group, name ) {
+	function findGroup( group ) {
 		// Check the list to see if this tag already exists
-		var found = false;
+		var found = -1;
 		jQuery.each( tagList, function( key, val ) {
-			if( val.group == group && val.name == name ) {
-				found = true;
+			if( val.group == group ) {
+				found = key;
 			}
 		});
-		
-		if( found ) {
-			return true;
-		}
-		return false; // else return false
+		return found;
+	}
+	function findTag( group, name ) {
+		// Check the list to see if this tag already exists
+		var found = -1;
+		jQuery.each( tagList, function( key, val ) {
+			if( val.group == group && val.name == name ) {
+				found = key;
+			}
+		});
+		return found;
 	}
 	function addTag( name, value ) {
 		var newTag = new Tags( name, value );
 		tagList.push( newTag );
 		populateTags( );
+		console.log( 'add tag ' + tagList.length );
+		console.log( tagList );
+	}
+	function replaceTag( id, name, value ) {
+		var newTag = new Tags( name, value );
+		tagList[ id ] = newTag;
+		populateTags( );
+		console.log( 'change tag ' + tagList.length );
+		console.log( tagList );
 	}
 	function removeTag( tag ) {
 		jQuery.each( tagList, function( key, val ) {
@@ -82,22 +97,45 @@
 	function populateTags( ) {
 		jQuery( "#tag-list" ).empty();
 		jQuery.each( tagList, function( key, val ) {
-			jQuery( "<span class='tagged-item " +  val.group + " " +  val.name + "'>" ).html( val.name ).attr( 'data-group-name', val.group + ':|:' + val.name ).appendTo( "#tag-list" ).on( "click", function( e ) {
-				removeTag( val );
-			});
+			jQuery( "<span class='tagged-item " +  val.group + " " +  val.name + "'>" )
+				.html( val.name ).attr( 'data-group-name', val.group + ':|:' + val.name )
+				.appendTo( "#tag-list" )
+				.on( "click", function( e ) { removeTag( val ); });
 		});
 	}
 	
-	function changeStorage( passed, name, value ) {
+	function changeStorage( passed, name, value, method ) {
+		var method = method || 'multi';
+		
 		passed[ name ] = value;
 		window.localStorage.setItem( "stored-ap-query", JSON.stringify( passed ) );
 		spoofURL( passed );
 		
-		if( !findTag( name, value ) ) { // check to see if we are adding a tag
+		var foundTag = findTag( name, value );
+		var foundGroup = findGroup( name );
+		if( foundTag == -1 &&  foundGroup == -1 ) { // check to see if we are adding a tag
+			addTag( name, value );
+		} else if( foundTag != -1 ) {
+			removeTag( { "group": name, "name": value } ); //remove the tag
+		} else {
+			if( method == 'multi' ) {
+				addTag( name, value );
+			} else if( method == 'single' ) {
+				replaceTag( foundGroup, name, value );
+			}
+		}
+		
+		/*
+		if( foundTag == -1 ) { // check to see if we are adding a tag
 			addTag( name, value );
 		} else {
-			removeTag( { "group": name, "name": value } ); //remove the tag
+			if( method == 'multi' ) {
+				removeTag( { "group": name, "name": value } ); //remove the tag
+			} else if( method == 'single' ) {
+				replaceTag( foundGroup, name, value );
+			}
 		}
+		*/
 		
 		return passed;
 	}
@@ -168,12 +206,10 @@
 		obj = readPassedVars( obj );// Need to check the url first!
 		setfields( obj );
 		jQuery( "#edit-language select" ).change(function( e ) {
-			obj = changeStorage( obj, 'language', e.currentTarget.value );
-			//console.log( obj );
+			obj = changeStorage( obj, 'language', e.currentTarget.value, jQuery( this ).attr( "data-click-type" ) );
 		});
 		jQuery( "#age-radio input" ).change(function( e ) {
-			obj = changeStorage( obj, 'age', e.currentTarget.value );
-			//console.log( obj );
+			obj = changeStorage( obj, 'age', e.currentTarget.value, jQuery( this ).attr( "data-click-type" ) );
 		});
 	});
 </script>
@@ -189,7 +225,7 @@
 	
 	<p><label id="age-radio">Do you have children under 2 yrs?<br />
 		<input type="radio" id="edit-undertwo-false" name="undertwo" value="children over two" class="age-radio" data-click-type="single"> No
-		<input type="radio" id="edit-undertwo-true" name="undertwo" value="children over two" class="age-radio" data-click-type="single"> Yes
+		<input type="radio" id="edit-undertwo-true" name="undertwo" value="children under two" class="age-radio" data-click-type="single"> Yes
 	</label></p>
 </div>
 <h2 class="tag-list">Tag List:</h2>
