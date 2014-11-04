@@ -73,20 +73,20 @@
 		var newTag = new Tags( name, value );
 		tagList.push( newTag );
 		populateTags( );
-		console.log( 'add tag ' + tagList.length );
-		console.log( tagList );
+	//	console.log( 'add tag ' + tagList.length );
+	//	console.log( tagList );
 	}
 	function replaceTag( id, name, value ) {
 		var newTag = new Tags( name, value );
 		tagList[ id ] = newTag;
 		populateTags( );
-		console.log( 'change tag ' + tagList.length );
-		console.log( tagList );
+	//	console.log( 'change tag ' + tagList.length );
+	//	console.log( tagList );
 	}
 	function removeTag( tag ) {
 		jQuery.each( tagList, function( key, val ) {
 			if( val.group == tag.group && val.name == tag.name ) {
-				console.log( 'found ' + key ); 
+			//	console.log( 'found ' + key ); 
 				tagList.splice( key, 1 );
 				populateTags();
 				return false;
@@ -211,6 +211,13 @@
 		jQuery( "#age-radio input" ).change(function( e ) {
 			obj = changeStorage( obj, 'age', e.currentTarget.value, jQuery( this ).attr( "data-click-type" ) );
 		});
+	});
+	
+	Object.observe(tagList, function(changes){ //observe model changes
+		changes.forEach(function(change) { // This asynchronous callback runs
+			console.log( change ); // Letting us know what changed
+		});
+
 	});
 </script>
 </head>
